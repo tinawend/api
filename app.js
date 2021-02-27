@@ -1,8 +1,9 @@
-var express = require('express')
+const express = require('express')
 const mongoose = require('mongoose')
-var app = express()
-var port = 3000
-
+const app = express()
+const port = 4000
+const registerRoutes = require('./routes/registerRoute')
+const fishRoutes = require('./routes/fishDataRoute')
 require('dotenv').config()
 mongoose.connect(`${process.env.DB_LINK}`,
   {
@@ -19,10 +20,11 @@ db.once('open', function () {
 db.on('connected', () => {
   console.log('Opened conection')
 })
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
-app.get('/', (req, res, next) => {
-  res.json(['Tony', 'Lisa', 'Michael', 'Ginger', 'Food'])
-})
+app.use('/register', registerRoutes)
+app.use('/fish', fishRoutes)
 
 app.listen(port)
 
