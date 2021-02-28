@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const port = 4000
+const cors = require('cors')
 const registerRoutes = require('./routes/registerRoute')
 const fishRoutes = require('./routes/fishDataRoute')
 require('dotenv').config()
@@ -20,6 +21,7 @@ db.once('open', function () {
 db.on('connected', () => {
   console.log('Opened conection')
 })
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 

@@ -41,5 +41,24 @@ routes.get('/:Id', async (req, res) => {
     res.json({ message: err })
   }
 })
+// delete a fish
+routes.delete('/:Id', async (req, res) => {
+  try {
+    const removeFish = await Fish.remove({ _id: req.params.Id })
+    res.json(removeFish)
+  } catch (err) {
+    res.json({ message: err })
+  }
+})
+
+routes.patch('/:Id', async (req, res) => {
+  try {
+    const updateFish = await Fish.updateOne({ _id: req.params.Id },
+      { $set: { username: req.body.username } })
+    res.json(updateFish)
+  } catch (err) {
+    res.json({ message: err })
+  }
+})
 
 module.exports = routes
