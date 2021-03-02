@@ -25,7 +25,8 @@ routes.get('/', (req, res) => {
           length: 0
         }
       },
-      deleteFish: { href: '/api/fish/:Id', method: 'DELETE', desc: 'url to deleting a fish, delete a specific fish by using _id for the fish', headers: { xaccesstoken: 'yourToken' } }
+      deleteFish: { href: '/api/fish/:Id', method: 'DELETE', desc: 'url to deleting a fish, delete a specific fish by using _id for the fish', headers: { xaccesstoken: 'yourToken' } },
+      updateFish: { href: '/api/fish/:Id', method: 'PATCH', desc: 'url to updating a fish, use _id to update one', headers: { xaccesstoken: 'yourToken' } }
     }
   })
 })
@@ -77,11 +78,23 @@ routes.delete('/:Id', verify, async (req, res) => {
     res.json({ message: err })
   }
 })
-
+// update one
 routes.patch('/:Id', verify, async (req, res) => {
   try {
     const updateFish = await Fish.updateOne({ _id: req.params.Id },
-      { $set: { username: req.body.username } })
+      {
+        $set: {
+          username: req.body.username,
+          location: req.body.location,
+          lake: req.body.lake,
+          city: req.body.city,
+          specie: req.body.specie,
+          weight: req.body.weight,
+          length: req.body.length,
+          imageUrl: req.body.imageUrl,
+          time: req.body.time
+        }
+      })
     res.json(updateFish)
   } catch (err) {
     res.json({ message: err })
