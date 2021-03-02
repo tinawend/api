@@ -14,7 +14,7 @@ routes.post('/', async (req, res) => {
   })
   try {
     const savedUser = await user.save()
-    res.send(savedUser)
+    res.status(201).send(savedUser)
   } catch (err) {
     res.status(400).send(err)
   }

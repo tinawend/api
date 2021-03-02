@@ -1,12 +1,16 @@
 const express = require('express')
 const routes = express.Router()
 
-// get all fishes
+// get links
 routes.get('/', async (req, res) => {
-  const baseURL = 'http://localhost' + req.baseUrl
-  req.nextURL = baseURL + '/register'
-  //   console.log(req.nextURL)
-  res.status(200).send('Go to: ' + req.nextURL)
+  res.status(200).json({
+    links: {
+      self: { href: '/api', method: 'GET', desc: 'the current url, the entry point' },
+      register: { href: '/api/user/register', method: 'POST', desc: 'url to create a new user', body: { username: 'yourUsername', password: 'yourPassword' } },
+      login: { href: '/api/user/login', method: 'POST', desc: 'url to log in with a user', headers: { xaccesstoken: 'yourToken' }, body: { username: 'yourUsername', password: 'yourPassword' } },
+      fish: { href: '/api/fish', method: 'GET', desc: 'Fish starting point, here you will get all links within fish' }
+    }
+  })
 })
 
 module.exports = routes
