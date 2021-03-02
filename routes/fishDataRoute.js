@@ -35,7 +35,7 @@ routes.get('/', (req, res) => {
 routes.get('/all', async (req, res) => {
   try {
     const fishes = await Fish.find()
-    res.json(fishes)
+    res.status(200).json(fishes)
   } catch (err) {
     res.json({ message: err })
   }
