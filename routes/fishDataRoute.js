@@ -1,19 +1,20 @@
 const express = require('express')
 const routes = express.Router()
 const Fish = require('../model/fish')
+const verify = require('../middleware/verifyUser')
 
 // get all fishes
-routes.get('/', async (req, res) => {
+routes.get('/', verify, async (req, res) => {
   try {
     const fishes = await Fish.find()
     res.json(fishes)
   } catch (err) {
     res.json({ message: err })
   }
-  res.send('fish')
+  // res.send('fish')
 })
 // save new fish
-routes.post('/', async (req, res) => {
+routes.post('/', verify, async (req, res) => {
   const fish = new Fish({
     username: req.body.username,
     location: req.body.location,
@@ -33,7 +34,7 @@ routes.post('/', async (req, res) => {
   }
 })
 // get specific fish
-routes.get('/:Id', async (req, res) => {
+routes.get('/:Id', verify, async (req, res) => {
   try {
     const fish = await Fish.findById(req.params.Id)
     res.json(fish)
@@ -42,7 +43,7 @@ routes.get('/:Id', async (req, res) => {
   }
 })
 // delete a fish
-routes.delete('/:Id', async (req, res) => {
+routes.delete('/:Id', verify, async (req, res) => {
   try {
     const removeFish = await Fish.remove({ _id: req.params.Id })
     res.json(removeFish)
@@ -51,7 +52,7 @@ routes.delete('/:Id', async (req, res) => {
   }
 })
 
-routes.patch('/:Id', async (req, res) => {
+routes.patch('/:Id', verify, async (req, res) => {
   try {
     const updateFish = await Fish.updateOne({ _id: req.params.Id },
       { $set: { username: req.body.username } })
