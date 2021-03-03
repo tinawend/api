@@ -6,7 +6,7 @@ var webHooks = new WebHooks({
   db: './webHooksDB.json' // json file that store webhook URLs
 })
 const registerController = {}
-
+// register a user
 registerController.register = async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username })
   const salt = await bcrypt.genSalt(10)
@@ -26,10 +26,9 @@ registerController.register = async (req, res) => {
     res.status(400).send(err)
   }
 }
-
+// add a webhook
 registerController.webhook = (req, res) => {
-  webHooks.add('registerWebhook', 'https://localhost:4000/api/user/register').then(function () {
-    // done
+  webHooks.add('registerWebhook', 'https://localhost:4000/api/users/register').then(function () {
     res.status(200).send('webhook added')
   }).catch(function (err) {
     res.status(400).send(err)

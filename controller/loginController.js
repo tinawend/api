@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const loginController = {}
-
+// login with a user
 loginController.login = async (req, res) => {
   const user = await User.findOne({ username: req.body.username })
   if (!user) {

@@ -25,11 +25,25 @@ fishController.index = (req, res) => {
         }
       },
       deleteFish: { href: '/api/fish/:Id', method: 'DELETE', desc: 'url to deleting a fish, delete a specific fish by using _id for the fish', headers: { key: 'auth-token', xaccesstoken: 'yourToken' } },
-      updateFish: { href: '/api/fish/:Id', method: 'PATCH', desc: 'url to updating a fish, use _id to update one', headers: { key: 'auth-token', xaccesstoken: 'yourToken' } }
+      updateFish: {
+        href: '/api/fish/:Id',
+        method: 'PATCH',
+        desc: 'url to updating a fish, use _id to update one',
+        headers: { key: 'auth-token', xaccesstoken: 'yourToken' },
+        body: {
+          user: 'yourUsername',
+          location: { type: 'Point', coordinates: [60.000000, -60.000000] },
+          lake: 'lakeName',
+          city: 'cityName',
+          specie: 'nameOfFish',
+          weight: 0,
+          length: 0
+        }
+      }
     }
   })
 }
-
+// get all fish
 fishController.getAll = async (req, res) => {
   try {
     const fishes = await Fish.find()
@@ -38,7 +52,7 @@ fishController.getAll = async (req, res) => {
     res.status(400).json({ message: err })
   }
 }
-
+// add a fish
 fishController.addOne = async (req, res) => {
   const fish = new Fish({
     user: req.body.user,
@@ -58,7 +72,7 @@ fishController.addOne = async (req, res) => {
     res.status(400).json({ message: err })
   }
 }
-
+// get specific fish
 fishController.getOne = async (req, res) => {
   try {
     const fish = await Fish.findById(req.params.Id)
@@ -67,7 +81,7 @@ fishController.getOne = async (req, res) => {
     res.status(400).json({ message: err })
   }
 }
-
+// delete a fish
 fishController.deleteOne = async (req, res) => {
   try {
     const removeFish = await Fish.remove({ _id: req.params.Id })
@@ -76,7 +90,7 @@ fishController.deleteOne = async (req, res) => {
     res.status(400).json({ message: err })
   }
 }
-
+// update a fish
 fishController.updateOne = async (req, res) => {
   try {
     const updateFish = await Fish.updateOne({ _id: req.params.Id },

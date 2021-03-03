@@ -10,7 +10,7 @@
 I have implemented HATEOAS by adding all request links, some are added to the entry link: "http://localhost:4000/api" and some are added to the fish entry point, you get there by following the fish link from the first entry point. The links make it easier for a user to follow how the requests should be used.
 
 2. If your solution should implement multiple representations of the resources. How would you do it?
-
+Currently it is not implemented for multiple representations. If I would do it I would probably make a new version of the resource or set this in the accept header.
 
 
 3. Motivate and defend your authentication solution. 3a. What other authentication solutions could you implement? 3b. What pros/cons do this solution have?
