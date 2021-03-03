@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 var WebHooks = require('node-webhooks')
 
 var webHooks = new WebHooks({
-  db: './webHooksDB.json' // json file that store webhook URLs
+  db: './webHooksDB.json'
 })
 const registerController = {}
 // register a user
@@ -26,7 +26,7 @@ registerController.register = async (req, res) => {
     res.status(400).send(err)
   }
 }
-// add a webhook
+// add a webhook (following guide on npm site)
 registerController.webhook = (req, res) => {
   webHooks.add('registerWebhook', 'https://localhost:4000/api/users/register').then(function () {
     res.status(200).send('webhook added')

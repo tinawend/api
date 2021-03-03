@@ -33,7 +33,7 @@ I have used the npm package node-webhooks for this. I have done a Post request w
 
 5. Since this is your first own web API, there are probably things you would solve in another way, looking back at this assignment. Write your thoughts about this.
 
-It was quite difficult to know where to start, since this is new and the assignment became clear after I was almost half way through. I would probably do things in a diffrent order if I was to do it over again. 
+It was quite difficult to know where to start, since this is new and the assignment became clear after I was almost half way through. I would probably do things in a diffrent order if I was to do it over again. If I had started earlier I would probably do another project then the suggested one, something more fun.
 
 6. Which "linguistic design rules" you implemented? List them here and motivate "for each" of them very briefly why you chose them? Remember that you must consider "at least" FIVE "linguistic design rules" as the linguistic quality of your API.
 - rule 1 (/ to indicate hierarchical relationship)
