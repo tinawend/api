@@ -15,7 +15,15 @@ I have implemented HATEOAS by adding all request links, some are added to the en
 
 3. Motivate and defend your authentication solution. 3a. What other authentication solutions could you implement? 3b. What pros/cons do this solution have?
 
-I have choosen JWT(jsonwebtoken) for authentication on this assignment, it was quite easy to begin with and it seems like a good way to authenticate. 
+I have choosen JWT(jsonwebtoken) for authentication on this assignment, it was quite easy to begin with and it seems like a good way to authenticate. Of what I have read some say PASETO is an alternative that is safer than JWT, a lot of people thinks JWT is not exactly the safest way to handle this type of information. However it was easy to implement and enough for this assignment.  
+
+### Pros
+- simple to use
+- stateless
+
+### Cons
+- if the key leaks out, the system will be compromised
+- decryption can be done
 
 
 4. Explain how your webhook works.
