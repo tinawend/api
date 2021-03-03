@@ -10,7 +10,7 @@
 			"name": "Root api",
 			"item": [
 				{
-					"name": "http://localhost:4000/api",
+					"name": "get start url",
 					"event": [
 						{
 							"listen": "test",
@@ -34,8 +34,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -74,7 +74,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "            {\r\n                \"username\": \"yourUsername\",\r\n                \"password\": \"yourPassword\"\r\n            }",
+							"raw": "            {\r\n                \"username\": \"newUser\",\r\n                \"password\": \"newPassword\"\r\n            }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,19 +82,63 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/user/register",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/users/register",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
 								"api",
-								"user",
+								"users",
 								"register"
 							]
 						},
 						"description": "Request to create a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "register with existing user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "            {\r\n                \"username\": \"existingUser\",\r\n                \"password\": \"password\"\r\n            }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:4000/api/users/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "request to try to register with a taken username"
 					},
 					"response": []
 				}
@@ -105,7 +149,7 @@
 			"name": "Login api ",
 			"item": [
 				{
-					"name": "http://localhost:4000/api/user/login",
+					"name": "successfull login",
 					"event": [
 						{
 							"listen": "test",
@@ -124,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "            {\r\n                \"username\": \"yourUsername\",\r\n                \"password\": \"yourPassword\"\r\n            }",
+							"raw": "            {\r\n                \"username\": \"existingUser\",\r\n                \"password\": \"password\"\r\n            }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -132,8 +176,52 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/user/login",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/users/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "request to login"
+					},
+					"response": []
+				},
+				{
+					"name": "login with wrong information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "            {\r\n                \"username\": \"nonExistingUsername\",\r\n                \"password\": \"nonExistingPassword\"\r\n            }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:4000/api/user/login",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -144,7 +232,7 @@
 								"login"
 							]
 						},
-						"description": "request to login"
+						"description": "request to login, but failed due to wrong username or password"
 					},
 					"response": []
 				}
@@ -155,7 +243,7 @@
 			"name": "Fish api",
 			"item": [
 				{
-					"name": "http://localhost:4000/api/fish",
+					"name": "fish start url",
 					"event": [
 						{
 							"listen": "test",
@@ -173,8 +261,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/fish",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/fish",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -189,7 +277,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:4000/api/fish/all",
+					"name": "get all fish",
 					"event": [
 						{
 							"listen": "test",
@@ -208,8 +296,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/fish/all",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/fish/all",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -225,19 +313,19 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:4000/api/fish",
+					"name": "add a fish",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNlNjUxNTY3OTM4YjEyOWM5ODVlNmYiLCJpYXQiOjE2MTQ3MDE5NDZ9.PN8Sj2rZqfT_B1L9R44Zp4LzhZaaC0ZE9klg-v04KP0",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOTYxZDU2Yjc0MDA0ZjA4MTVmMmQiLCJpYXQiOjE2MTQ3ODE4MDZ9.QkSyPnGwsC8yfAMxjoeWRH08ACDrDQfj1CgFaoYi8P4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "              {  \"username\": \"yourUsername\",\r\n                \"location\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        60,\r\n                        -60\r\n                    ]\r\n                },\r\n                \"lake\": \"lakeName\",\r\n                \"city\": \"cityName\",\r\n                \"specie\": \"nameOfFish\",\r\n                \"weight\": 0,\r\n                \"length\": 0\r\n              }",
+							"raw": "              {  \"user\": \"newuser\",\r\n                \"location\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        60,\r\n                        -60\r\n                    ]\r\n                },\r\n                \"lake\": \"lake\",\r\n                \"city\": \"city\",\r\n                \"specie\": \"name\",\r\n                \"weight\": 10,\r\n                \"length\": 10\r\n              }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -245,8 +333,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/fish",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/fish",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -261,13 +349,13 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:4000/api/fish/603a6a5e896b9b1fcc7e0b58",
+					"name": "delete a fish",
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNlNjUxNTY3OTM4YjEyOWM5ODVlNmYiLCJpYXQiOjE2MTQ3MDE5NDZ9.PN8Sj2rZqfT_B1L9R44Zp4LzhZaaC0ZE9klg-v04KP0",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOTYxZDU2Yjc0MDA0ZjA4MTVmMmQiLCJpYXQiOjE2MTQ3ODE4MDZ9.QkSyPnGwsC8yfAMxjoeWRH08ACDrDQfj1CgFaoYi8P4",
 								"type": "text"
 							}
 						],
@@ -276,8 +364,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/fish/603a6a5e896b9b1fcc7e0b58",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/fish/603f896b1c4bf423103e39b2",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -285,7 +373,7 @@
 							"path": [
 								"api",
 								"fish",
-								"603a6a5e896b9b1fcc7e0b58"
+								"603f896b1c4bf423103e39b2"
 							]
 						},
 						"description": "request to delete a fish"
@@ -293,13 +381,13 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:4000/api/fish/603e665b67938b129c985e70",
+					"name": "get specific fish",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/fish/603e665b67938b129c985e70",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/fish/603f935456b74004f0815f2b",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -307,7 +395,7 @@
 							"path": [
 								"api",
 								"fish",
-								"603e665b67938b129c985e70"
+								"603f935456b74004f0815f2b"
 							]
 						},
 						"description": "request to view a specific fish"
@@ -315,19 +403,19 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:4000/api/fish/603e665b67938b129c985e70",
+					"name": "update a specific fish",
 					"request": {
 						"method": "PATCH",
 						"header": [
 							{
 								"key": "auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNlNjUxNTY3OTM4YjEyOWM5ODVlNmYiLCJpYXQiOjE2MTQ3MDE5NDZ9.PN8Sj2rZqfT_B1L9R44Zp4LzhZaaC0ZE9klg-v04KP0",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOTYxZDU2Yjc0MDA0ZjA4MTVmMmQiLCJpYXQiOjE2MTQ3ODE4MDZ9.QkSyPnGwsC8yfAMxjoeWRH08ACDrDQfj1CgFaoYi8P4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "              {  \"username\": \"yourUsername\",\r\n                \"location\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        70,\r\n                        -70\r\n                    ]\r\n                },\r\n                \"lake\": \"lakeName\",\r\n                \"city\": \"cityName\",\r\n                \"specie\": \"nameOfFish\",\r\n                \"weight\": 10,\r\n                \"length\": 20\r\n              }",
+							"raw": "              {  \"user\": \"username\",\r\n                \"location\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        70,\r\n                        -70\r\n                    ]\r\n                },\r\n                \"lake\": \"lakeName\",\r\n                \"city\": \"cityName\",\r\n                \"specie\": \"nameOfFish\",\r\n                \"weight\": 10,\r\n                \"length\": 20\r\n              }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -335,8 +423,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/fish/603e665b67938b129c985e70",
-							"protocol": "http",
+							"raw": "https://localhost:4000/api/fish/603f935456b74004f0815f2b",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -344,7 +432,7 @@
 							"path": [
 								"api",
 								"fish",
-								"603e665b67938b129c985e70"
+								"603f935456b74004f0815f2b"
 							]
 						},
 						"description": "request to update existing fish"
@@ -353,6 +441,33 @@
 				}
 			],
 			"description": "requests for fish"
+		},
+		{
+			"name": "webhook api",
+			"item": [
+				{
+					"name": "add a webhook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:4000/api/webhook",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"webhook"
+							]
+						},
+						"description": "request to add a webhook"
+					},
+					"response": []
+				}
+			],
+			"description": "Create a webhook"
 		}
 	]
 }

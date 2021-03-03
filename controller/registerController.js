@@ -8,9 +8,12 @@ var webHooks = new WebHooks({
 const registerController = {}
 
 registerController.register = async (req, res) => {
+  const existingUser = await User.findOne({ username: req.body.username })
   const salt = await bcrypt.genSalt(10)
   const hashPassword = await bcrypt.hash(req.body.password, salt)
-
+  if (existingUser) {
+    res.status(400).send('try to register with a different username')
+  }
   const user = new User({
     username: req.body.username,
     password: hashPassword

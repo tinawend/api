@@ -35,4 +35,4 @@ It was quite difficult to know where to start, since this is new and the assignm
 - rule 10 (CRUD operation names are not part of URIs)
 
 7. Did you do something extra besides the fundamental requirements? Explain them.
-Unfortunately I started with the assignment a bit too late (due to other assignment handins) and did not have time to do anything extra.   
+Unfortunately I started with the assignment a bit too late (due to other assignment handins) and did not have time to do anything extra. I did not have much time to do tests but I have done a few, I would have wanted to do some more. I would also have liked to do some more error handling. 

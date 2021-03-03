@@ -35,7 +35,7 @@ fishController.getAll = async (req, res) => {
     const fishes = await Fish.find()
     res.status(200).json(fishes)
   } catch (err) {
-    res.json({ message: err })
+    res.status(400).json({ message: err })
   }
 }
 
@@ -53,7 +53,7 @@ fishController.addOne = async (req, res) => {
   })
   try {
     const savedFish = await fish.save()
-    res.json(savedFish)
+    res.status(201).json(savedFish)
   } catch (err) {
     res.status(400).json({ message: err })
   }
@@ -64,7 +64,7 @@ fishController.getOne = async (req, res) => {
     const fish = await Fish.findById(req.params.Id)
     res.json(fish)
   } catch (err) {
-    res.json({ message: err })
+    res.status(400).json({ message: err })
   }
 }
 
@@ -73,7 +73,7 @@ fishController.deleteOne = async (req, res) => {
     const removeFish = await Fish.remove({ _id: req.params.Id })
     res.json(removeFish)
   } catch (err) {
-    res.json({ message: err })
+    res.status(400).json({ message: err })
   }
 }
 
@@ -95,7 +95,7 @@ fishController.updateOne = async (req, res) => {
       })
     res.json(updateFish)
   } catch (err) {
-    res.json({ message: err })
+    res.status(400).json({ message: err })
   }
 }
 
