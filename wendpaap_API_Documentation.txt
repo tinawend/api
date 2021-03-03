@@ -1,27 +1,29 @@
-GET http://localhost:4000/api
+GET https://localhost:4000/api
 gets HATEOAS links
 
-POST http://localhost:4000/api/register
+POST https://localhost:4000/api/users/register
 registers a new user
 
-POST http://localhost:4000/api/login
+POST https://localhost:4000/api/users/login
 authenticates a user
 
-GET http://localhost:4000/api/fish
+GET https://localhost:4000/api/fish
 gets HATEOAS links within fish
 
-GET http://localhost:4000/api/fish/all
+GET https://localhost:4000/api/fish/all
 gets all stored fishes 
 
-POST http://localhost:4000/api/fish
+POST https://localhost:4000/api/fish
 adds a new fish to db
 
-GET http://localhost:4000/api/fish/:Id
+GET https://localhost:4000/api/fish/:Id
 gets a specified fish by Id
 
-DELETE http://localhost:4000/api/fish/:Id
+DELETE https://localhost:4000/api/fish/:Id
 deletes a specified fish by Id
 
-Patch http://localhost:4000/api/fish/:Id
+Patch https://localhost:4000/api/fish/:Id
 updates a specified fish by Id
 
+POST https://localhost:4000/api/webhook
+to register a webhook
