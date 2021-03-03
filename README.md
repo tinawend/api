@@ -1,6 +1,9 @@
-- npm install
-- npm start
-- 
+- open a terminal
+- run 'npm install'
+- run 'npm start'
+- open a second terminal
+- run 'newman run fish\ API.postman_collection.json' OR
+- Go to postman an try out the requests, with starting point at: http://localhost:4000/api 
 
 1. Explain and defend your implementation of HATEOAS in your solution.
 
