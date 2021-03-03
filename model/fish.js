@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-mongoose.set('useCreateIndex', true)
+// mongoose.set('useCreateIndex', true)
 
 const FishSchema = new Schema({
-  username: { type: String, required: true },
+  user: { type: String, required: true },
   location: {
     type: {
       type: String,

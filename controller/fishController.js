@@ -15,7 +15,7 @@ fishController.index = (req, res) => {
         desc: 'url to add a new fish, please change values to your own information',
         headers: { key: 'auth-token', xaccesstoken: 'yourToken' },
         body: {
-          username: 'yourUsername',
+          user: 'yourUsername',
           location: { type: 'Point', coordinates: [60.000000, -60.000000] },
           lake: 'lakeName',
           city: 'cityName',
@@ -41,7 +41,7 @@ fishController.getAll = async (req, res) => {
 
 fishController.addOne = async (req, res) => {
   const fish = new Fish({
-    username: req.body.username,
+    user: req.body.user,
     location: req.body.location,
     lake: req.body.lake,
     city: req.body.city,
@@ -55,7 +55,7 @@ fishController.addOne = async (req, res) => {
     const savedFish = await fish.save()
     res.json(savedFish)
   } catch (err) {
-    res.json({ message: err })
+    res.status(400).json({ message: err })
   }
 }
 
@@ -82,7 +82,7 @@ fishController.updateOne = async (req, res) => {
     const updateFish = await Fish.updateOne({ _id: req.params.Id },
       {
         $set: {
-          username: req.body.username,
+          user: req.body.user,
           location: req.body.location,
           lake: req.body.lake,
           city: req.body.city,
